@@ -1,0 +1,71 @@
+export const heroSlides = [
+  {
+    id: 1,
+    title: "Clinical Skincare, Refined Everyday",
+    subtitle: "Discover dermatologist-backed formulas for luminous, balanced skin.",
+    image:
+      "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1600&q=80",
+    cta: "Shop New Arrivals",
+  },
+  {
+    id: 2,
+    title: "Hydration Meets Performance",
+    subtitle: "Advanced moisture complexes designed for long-lasting comfort.",
+    image:
+      "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=1600&q=80",
+    cta: "Explore Hydration",
+  },
+  {
+    id: 3,
+    title: "Precision Rituals for Every Skin Type",
+    subtitle: "Build a routine from cleansers to targeted treatment serums.",
+    image:
+      "https://images.unsplash.com/photo-1556229162-5c63ed9c4efb?auto=format&fit=crop&w=1600&q=80",
+    cta: "Build Your Routine",
+  },
+];
+
+export const categories = [
+  { name: "Cleansers", icon: "CL" },
+  { name: "Serums", icon: "SE" },
+  { name: "Moisturizers", icon: "MO" },
+  { name: "Sun Care", icon: "SP" },
+];
+
+export const products = [
+  {
+    id: "p1",
+    name: "Hydra Barrier Serum",
+    price: "$42",
+    image:
+      "https://images.unsplash.com/photo-1570554886111-e80fcca6a029?auto=format&fit=crop&w=1000&q=80",
+  },
+  {
+    id: "p2",
+    name: "Purifying Gel Cleanser",
+    price: "$29",
+    image:
+      "https://images.unsplash.com/photo-1596755389378-c31d21fd1273?auto=format&fit=crop&w=1000&q=80",
+  },
+  {
+    id: "p3",
+    name: "Daily Defense SPF 50",
+    price: "$34",
+    image:
+      "https://images.unsplash.com/photo-1570194065650-d99fb4d8a18f?auto=format&fit=crop&w=1000&q=80",
+  },
+  {
+    id: "p4",
+    name: "Night Recovery Cream",
+    price: "$55",
+    image:
+      "https://images.unsplash.com/photo-1617897903246-719242758050?auto=format&fit=crop&w=1000&q=80",
+  },
+];
+
+export const searchSuggestions = [
+  "Vitamin C serum",
+  "Niacinamide",
+  "Fragrance free moisturizer",
+  "SPF 50",
+];
