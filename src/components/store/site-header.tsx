@@ -37,7 +37,7 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40">
       <div className="h-8 bg-accent text-white text-xs tracking-wide flex items-center justify-center">
-        Complimentary samples with every order over $90
+         FREE SHIPPING Above 500 EGPs
       </div>
       <motion.div
         animate={{
@@ -77,7 +77,7 @@ export function SiteHeader() {
           </nav>
 
           <Link href="/" className="text-lg font-semibold tracking-[0.22em] uppercase">
-            EVA CLINICAL
+          Nevin Pharmacy
           </Link>
 
           <div className="flex items-center gap-2">

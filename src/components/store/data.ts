@@ -35,31 +35,59 @@ export const categories = [
 export const products = [
   {
     id: "p1",
-    name: "Hydra Barrier Serum",
-    price: "$42",
+    name: "Hair Mask With Silk Protein",
+    price: "85 EGP",
     image:
-      "https://images.unsplash.com/photo-1570554886111-e80fcca6a029?auto=format&fit=crop&w=1000&q=80",
+      "/images/hair mask 2.webp",
   },
   {
     id: "p2",
-    name: "Purifying Gel Cleanser",
-    price: "$29",
+    name: "Hair Mask With Aloe Vera",
+    price: "85 EGP",
     image:
-      "https://images.unsplash.com/photo-1596755389378-c31d21fd1273?auto=format&fit=crop&w=1000&q=80",
+      "/images/hair mask.jpg",
   },
   {
     id: "p3",
-    name: "Daily Defense SPF 50",
-    price: "$34",
+    name: "Hair Mask With Yogurt",
+    price: "85 EGP",
     image:
-      "https://images.unsplash.com/photo-1570194065650-d99fb4d8a18f?auto=format&fit=crop&w=1000&q=80",
+      "/images/hair mask3.jpg",
   },
   {
     id: "p4",
-    name: "Night Recovery Cream",
-    price: "$55",
+    name: "Balsam For Hair",
+    price: "160 EGP",
     image:
-      "https://images.unsplash.com/photo-1617897903246-719242758050?auto=format&fit=crop&w=1000&q=80",
+      "/images/balsam.webp",
+  },
+  {
+    id: "p5",
+    name: "Shampoo And Balsam",
+    price: "530 EGP",
+    image:
+      "/images/shampoo and balsam.webp",
+  },
+  {
+    id: "p6",
+    name: "starville acne prone facial cleanser",
+    price: "120 EGP",
+    image:
+      "/images/cleaner.webp",
+  },
+  {
+    id: "p7",
+    name: "starville whitening cleanser",
+    price: "190 EGP",
+    image:
+      "/images/starville-whitening-cleanser.webp",
+  },
+  {
+    id: "p8",
+    name: "soap and glory glaves ",
+    price: "240 EGP",
+    image:
+      "/images/soap-and-glory-gloves.webp",
   },
 ];
 

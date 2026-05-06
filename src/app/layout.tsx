@@ -8,8 +8,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "EVA Clinical Cosmetics",
-  description: "Clinical-chic beauty storefront built with Next.js.",
+  title: "NEVIN PHARMACY",
+  description: "Nevin Pharmacy is a pharmacy that provides a wide range of products for the whole family.",
 };
 
 export default function RootLayout({
