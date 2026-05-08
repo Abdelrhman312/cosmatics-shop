@@ -32,68 +32,9 @@ export const categories = [
   { name: "Sun Care", icon: "SP" },
 ];
 
-export const products = [
-  {
-    id: "p1",
-    name: "Hair Mask With Silk Protein",
-    price: "85 EGP",
-    image:
-      "/images/hair mask 2.webp",
-  },
-  {
-    id: "p2",
-    name: "Hair Mask With Aloe Vera",
-    price: "85 EGP",
-    image:
-      "/images/hair mask.jpg",
-  },
-  {
-    id: "p3",
-    name: "Hair Mask With Yogurt",
-    price: "85 EGP",
-    image:
-      "/images/hair mask3.jpg",
-  },
-  {
-    id: "p4",
-    name: "Balsam For Hair",
-    price: "160 EGP",
-    image:
-      "/images/balsam.webp",
-  },
-  {
-    id: "p5",
-    name: "Shampoo And Balsam",
-    price: "530 EGP",
-    image:
-      "/images/shampoo and balsam.webp",
-  },
-  {
-    id: "p6",
-    name: "starville acne prone facial cleanser",
-    price: "120 EGP",
-    image:
-      "/images/cleaner.webp",
-  },
-  {
-    id: "p7",
-    name: "starville whitening cleanser",
-    price: "190 EGP",
-    image:
-      "/images/starville-whitening-cleanser.webp",
-  },
-  {
-    id: "p8",
-    name: "soap and glory glaves ",
-    price: "240 EGP",
-    image:
-      "/images/soap-and-glory-gloves.webp",
-  },
-];
-
 export const searchSuggestions = [
-  "Vitamin C serum",
-  "Niacinamide",
-  "Fragrance free moisturizer",
-  "SPF 50",
+  "Hair mask",
+  "Acne cleanser",
+  "Sensitive skin",
+  "Body care",
 ];

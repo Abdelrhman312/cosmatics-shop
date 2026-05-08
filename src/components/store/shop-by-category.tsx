@@ -9,13 +9,13 @@ export function ShopByCategory() {
           {categories.map((category) => (
             <article
               key={category.name}
-              className="group rounded-xl bg-white border border-border p-5 md:p-8 flex flex-col items-center text-center hover:shadow-soft transition-shadow"
+              className="group rounded-xl bg-white dark:bg-zinc-900 border border-border p-5 md:p-8 flex flex-col items-center text-center hover:shadow-soft transition-shadow"
             >
-              <div className="h-14 w-14 rounded-full border border-border flex items-center justify-center text-xs tracking-widest text-zinc-500">
+              <div className="h-14 w-14 rounded-full border border-border flex items-center justify-center text-xs tracking-widest text-zinc-500 dark:text-zinc-400">
                 {category.icon}
               </div>
               <h3 className="mt-4 text-sm font-medium">{category.name}</h3>
-              <p className="mt-2 text-xs text-zinc-500 group-hover:text-accent transition-colors">
+              <p className="mt-2 text-xs text-zinc-500 dark:text-zinc-400 group-hover:text-accent transition-colors">
                 Explore collection
               </p>
             </article>

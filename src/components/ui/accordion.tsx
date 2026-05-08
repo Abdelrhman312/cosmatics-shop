@@ -49,7 +49,7 @@ const AccordionContent = React.forwardRef<
     className={cn("overflow-hidden text-sm", className)}
     {...props}
   >
-    <div className="pb-4 pt-0 text-zinc-600">{children}</div>
+    <div className="pb-4 pt-0 text-zinc-600 dark:text-zinc-300">{children}</div>
   </AccordionPrimitive.Content>
 ));
 AccordionContent.displayName = AccordionPrimitive.Content.displayName;

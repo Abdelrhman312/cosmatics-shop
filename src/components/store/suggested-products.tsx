@@ -1,0 +1,28 @@
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+
+import { Product } from "@/types/store";
+
+export function SuggestedProducts({ products }: { products: Product[] }) {
+  if (products.length === 0) {
+    return <p className="mt-4 text-sm text-zinc-500 dark:text-zinc-400">No suggestions available right now.</p>;
+  }
+
+  return (
+    <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
+      {products.map((product) => (
+        <article key={product.id} className="rounded-xl border border-border bg-white dark:bg-zinc-900 overflow-hidden">
+          <Link href={`/product/${product.id}`} className="relative block aspect-[4/5]">
+            <Image src={product.image_url} alt={product.name} fill className="object-cover" />
+          </Link>
+          <div className="p-4">
+            <h3 className="font-medium">{product.name}</h3>
+            <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">{product.price} EGP</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  );
+}

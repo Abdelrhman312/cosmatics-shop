@@ -15,8 +15,13 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { searchSuggestions } from "@/components/store/data";
+import { useCart } from "@/components/store/cart-context";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { useTheme } from "next-themes";
 
 export function SiteHeader() {
+  const { resolvedTheme } = useTheme();
+  const { items, totalAmount, totalItems, removeFromCart } = useCart();
   const [search, setSearch] = useState("");
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -41,8 +46,22 @@ export function SiteHeader() {
       </div>
       <motion.div
         animate={{
-          backgroundColor: isScrolled ? "rgba(255,255,255,0.97)" : "rgba(255,255,255,0.7)",
-          borderBottomColor: isScrolled ? "rgba(229,231,235,1)" : "rgba(229,231,235,0)",
+          backgroundColor:
+            resolvedTheme === "dark"
+              ? isScrolled
+                ? "rgba(14,14,15,0.97)"
+                : "rgba(14,14,15,0.78)"
+              : isScrolled
+                ? "rgba(255,255,255,0.97)"
+                : "rgba(255,255,255,0.7)",
+          borderBottomColor:
+            resolvedTheme === "dark"
+              ? isScrolled
+                ? "rgba(63,63,70,1)"
+                : "rgba(63,63,70,0)"
+              : isScrolled
+                ? "rgba(229,231,235,1)"
+                : "rgba(229,231,235,0)",
           backdropFilter: "blur(10px)",
         }}
         className="border-b"
@@ -69,7 +88,7 @@ export function SiteHeader() {
             </Sheet>
           </div>
 
-          <nav className="hidden md:flex items-center gap-8 text-sm text-zinc-700">
+          <nav className="hidden md:flex items-center gap-8 text-sm text-zinc-700 dark:text-zinc-300">
             <Link href="/">New In</Link>
             <Link href="/">Skincare</Link>
             <Link href="/">Makeup</Link>
@@ -81,6 +100,7 @@ export function SiteHeader() {
           </Link>
 
           <div className="flex items-center gap-2">
+            <ThemeToggle />
             <Sheet>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon" aria-label="Open search">
@@ -99,7 +119,10 @@ export function SiteHeader() {
                   />
                   <ul className="space-y-3 text-sm">
                     {suggestions.map((item) => (
-                      <li key={item} className="text-zinc-600 hover:text-accent cursor-pointer">
+                      <li
+                        key={item}
+                        className="text-zinc-600 hover:text-accent dark:text-zinc-300 cursor-pointer"
+                      >
                         {item}
                       </li>
                     ))}
@@ -120,19 +143,47 @@ export function SiteHeader() {
               </SheetTrigger>
               <SheetContent>
                 <SheetHeader>
-                  <SheetTitle>Your Cart (2)</SheetTitle>
+                  <SheetTitle>Your Cart ({totalItems})</SheetTitle>
                 </SheetHeader>
                 <div className="mt-8 space-y-6">
                   <div>
-                    <div className="flex justify-between text-xs text-zinc-500 mb-2">
+                    <div className="flex justify-between text-xs text-zinc-500 dark:text-zinc-400 mb-2">
                       <span>Free shipping progress</span>
-                      <span>$68 / $90</span>
+                      <span>{Math.min(totalAmount, 500)} / 500 EGP</span>
                     </div>
-                    <div className="h-2 rounded-full bg-zinc-100">
-                      <div className="h-full w-3/4 rounded-full bg-accent" />
+                    <div className="h-2 rounded-full bg-zinc-100 dark:bg-zinc-800">
+                      <div
+                        className="h-full rounded-full bg-accent"
+                        style={{ width: `${Math.min((totalAmount / 500) * 100, 100)}%` }}
+                      />
                     </div>
                   </div>
-                  <Button className="w-full">Checkout</Button>
+                  <div className="space-y-3 max-h-56 overflow-y-auto">
+                    {items.length === 0 ? (
+                      <p className="text-sm text-zinc-500 dark:text-zinc-400">Your cart is empty.</p>
+                    ) : (
+                      items.map((item) => (
+                        <div key={item.id} className="flex items-center justify-between text-sm">
+                          <span>
+                            {item.name} x {item.quantity}
+                          </span>
+                          <button
+                            onClick={() => removeFromCart(item.id)}
+                            className="text-zinc-500 hover:text-accent dark:text-zinc-400"
+                          >
+                            Remove
+                          </button>
+                        </div>
+                      ))
+                    )}
+                  </div>
+                  <div className="flex items-center justify-between text-sm">
+                    <span>Items: {totalItems}</span>
+                    <span>Total: {totalAmount.toFixed(2)} EGP</span>
+                  </div>
+                  <Button className="w-full" asChild>
+                    <Link href="/checkout">Checkout</Link>
+                  </Button>
                 </div>
               </SheetContent>
             </Sheet>

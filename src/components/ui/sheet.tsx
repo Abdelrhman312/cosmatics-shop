@@ -32,12 +32,12 @@ const SheetContent = React.forwardRef<
     <DialogPrimitive.Content
       ref={ref}
       className={cn(
-        "fixed inset-y-0 right-0 z-50 h-full w-full max-w-md border-l border-border bg-white p-6 shadow-soft",
+        "fixed inset-y-0 right-0 z-50 h-full w-full max-w-md border-l border-border bg-white p-6 shadow-soft dark:bg-zinc-950",
         className
       )}
       {...props}
     >
-      <DialogPrimitive.Close className="absolute right-4 top-4 rounded-md text-zinc-500 hover:text-zinc-900">
+      <DialogPrimitive.Close className="absolute right-4 top-4 rounded-md text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100">
         <X className="h-4 w-4" />
         <span className="sr-only">Close</span>
       </DialogPrimitive.Close>
