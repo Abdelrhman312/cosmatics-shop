@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { Menu, Search, ShoppingBag, User } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -40,12 +40,7 @@ export function SiteHeader() {
   }, [search]);
 
   return (
-    <motion.header
-      initial={{ opacity: 0, y: -18 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.45, ease: "easeOut" }}
-      className="sticky top-0 z-40"
-    >
+    <header className="sticky top-0 z-40">
       <div className="h-8 bg-accent text-white text-xs tracking-wide flex items-center justify-center">
          FREE SHIPPING Above 500 EGPs
       </div>
@@ -142,22 +137,8 @@ export function SiteHeader() {
 
             <Sheet>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" aria-label="Cart" className="relative">
+                <Button variant="ghost" size="icon" aria-label="Cart">
                   <ShoppingBag className="h-5 w-5" />
-                  <AnimatePresence>
-                    {totalItems > 0 ? (
-                      <motion.span
-                        key={totalItems}
-                        initial={{ scale: 0.45, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        exit={{ scale: 0.45, opacity: 0 }}
-                        transition={{ type: "spring", stiffness: 500, damping: 24 }}
-                        className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-red-600 px-1 text-[10px] font-semibold leading-none text-white ring-2 ring-white dark:ring-zinc-900"
-                      >
-                        {totalItems > 99 ? "99+" : totalItems}
-                      </motion.span>
-                    ) : null}
-                  </AnimatePresence>
                 </Button>
               </SheetTrigger>
               <SheetContent>
@@ -209,6 +190,6 @@ export function SiteHeader() {
           </div>
         </div>
       </motion.div>
-    </motion.header>
+    </header>
   );
 }

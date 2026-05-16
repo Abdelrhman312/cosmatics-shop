@@ -11,8 +11,6 @@ import { Product } from "@/types/store";
 
 export function ProductGrid({ products }: { products: Product[] }) {
   const { addToCart } = useCart();
-  // Temporarily disable the filter UI without deleting its implementation.
-  const showFilters = false;
   const [skinFilters, setSkinFilters] = useState<string[]>([]);
   const [categoryFilters, setCategoryFilters] = useState<string[]>([]);
 
@@ -32,15 +30,8 @@ export function ProductGrid({ products }: { products: Product[] }) {
   );
 
   return (
-    <motion.section
-      initial={{ opacity: 0, y: 28 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.15 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className="py-16 md:py-24"
-    >
-      <div className="container">
-        {showFilters ? (
+    <section className="py-16 md:py-24">
+      <div className="container grid grid-cols-1 gap-10 lg:grid-cols-[260px_1fr]">
         <aside className="h-fit rounded-xl border border-border bg-white p-5 dark:border-zinc-800 dark:bg-zinc-900 lg:sticky lg:top-28">
           <h3 className="font-semibold">Filter Products</h3>
           <div className="mt-6 space-y-5 text-sm">
@@ -59,7 +50,6 @@ export function ProductGrid({ products }: { products: Product[] }) {
             <FilterGroup title="Price" options={["$0 - $30", "$30 - $60", "$60+"]} />
           </div>
         </aside>
-        ) : null}
 
         <div>
           <div className="mb-8 flex items-end justify-between">
@@ -70,11 +60,8 @@ export function ProductGrid({ products }: { products: Product[] }) {
             {filteredProducts.map((product) => (
               <motion.article
                 key={product.id}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
                 whileHover={{ y: -6 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.35, ease: "easeOut" }}
+                transition={{ duration: 0.25 }}
                 className="group relative overflow-hidden rounded-xl border border-border bg-white dark:border-zinc-800 dark:bg-zinc-900"
               >
                 <div className="relative aspect-[4/5]">
@@ -88,7 +75,7 @@ export function ProductGrid({ products }: { products: Product[] }) {
                   </Link>
                   <div className="absolute inset-x-4 bottom-4 opacity-0 group-hover:opacity-100 transition-opacity">
                     <Button className="w-full" onClick={() => addToCart(product)}>
-                      Add to Cart
+                      Quick Add
                     </Button>
                   </div>
                 </div>
@@ -101,7 +88,7 @@ export function ProductGrid({ products }: { products: Product[] }) {
           </div>
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 }
 

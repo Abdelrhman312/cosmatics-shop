@@ -2,7 +2,6 @@
 
 import { FormEvent, useMemo, useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
 
 import { useCart } from "@/components/store/cart-context";
 import { Button } from "@/components/ui/button";
@@ -19,7 +18,6 @@ export function CheckoutClient() {
   const [orderedTotal, setOrderedTotal] = useState(0);
   const [customerName, setCustomerName] = useState("");
   const [customerPhone, setCustomerPhone] = useState("");
-  const [customerAddress, setCustomerAddress] = useState("");
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("cod");
   const [proofFile, setProofFile] = useState<File | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -31,11 +29,10 @@ export function CheckoutClient() {
     return buildWhatsappOrderLink({
       orderId,
       customerName,
-      customerAddress,
       totalAmount: orderedTotal,
       items: orderedItems,
     });
-  }, [customerAddress, customerName, orderId, orderedItems, orderedTotal]);
+  }, [customerName, orderId, orderedItems, orderedTotal]);
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
@@ -47,20 +44,12 @@ export function CheckoutClient() {
       setError("Please upload transfer screenshot.");
       return;
     }
-    if (!customerAddress.trim()) {
-      setError("Please enter your delivery address.");
-      return;
-    }
 
     setError("");
     setIsSubmitting(true);
 
     try {
-      if (!hasSupabaseEnv) {
-        throw new Error(
-          "Supabase is not configured. Please add NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY to .env.local."
-        );
-      }
+      if (!hasSupabaseEnv) throw new Error("Supabase env is missing.");
       const supabase = getSupabaseClient();
 
       let paymentProofUrl: string | null = null;
@@ -83,7 +72,6 @@ export function CheckoutClient() {
         .insert({
           customer_name: customerName,
           customer_phone: customerPhone,
-          customer_address: customerAddress,
           total_amount: totalAmount,
           payment_method: paymentMethod,
           payment_proof_url: paymentProofUrl,
@@ -108,16 +96,10 @@ export function CheckoutClient() {
       setOrderId(orderData.id);
       clearCart();
     } catch (submissionError) {
-      const message =
+      setError(
         submissionError instanceof Error
           ? submissionError.message
-          : "Failed to submit order.";
-
-      setError(
-        message.toLowerCase().includes("row-level security") ||
-          message.toLowerCase().includes("rls")
-          ? "Supabase rejected the order because RLS policies are missing. Run the updated supabase/schema.sql policies, then try again."
-          : message
+          : "Failed to submit order."
       );
     } finally {
       setIsSubmitting(false);
@@ -125,12 +107,7 @@ export function CheckoutClient() {
   };
 
   return (
-    <motion.section
-      initial={{ opacity: 0, y: 18 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.45, ease: "easeOut" }}
-      className="py-16 md:py-24"
-    >
+    <section className="py-16 md:py-24">
       <div className="container max-w-3xl">
         <h1 className="text-3xl font-semibold">Checkout</h1>
         <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400">Complete your order details to place your order.</p>
@@ -166,13 +143,6 @@ export function CheckoutClient() {
                 onChange={(event) => setCustomerPhone(event.target.value)}
               />
             </div>
-
-            <Input
-              required
-              placeholder="Delivery Address"
-              value={customerAddress}
-              onChange={(event) => setCustomerAddress(event.target.value)}
-            />
 
             <div className="space-y-2">
               <p className="text-sm font-medium">Payment Method</p>
@@ -230,6 +200,6 @@ export function CheckoutClient() {
           </form>
         )}
       </div>
-    </motion.section>
+    </section>
   );
 }
